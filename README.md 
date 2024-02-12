@@ -1,0 +1,49 @@
+## Guardians Ascension RPG
+
+Welcome to Guardians Ascension RPG, an exciting role-playing game set in the mystical realm of Aetheria! Embark on an epic journey of heroism, magic, and adventure as you rise to become the legendary Guardian of Aetheria and protect the realm from the forces of darkness.
+
+### Description
+
+Guardians Ascension RPG is a Python-based game developed using the Pygame library. In this game, you'll take on the role of a young apprentice chosen by fate to undergo the Trial of Ascension and prove your worthiness to become the next Guardian of Aetheria. Along the way, you'll encounter challenging quests, formidable adversaries, and ancient secrets waiting to be uncovered.
+
+### Features
+
+- Explore the rich and immersive world of Aetheria, filled with diverse landscapes, ancient ruins, and hidden treasures.
+- Engage in real-time combat with a variety of enemies, utilizing elemental powers and strategic tactics to emerge victorious.
+- Forge alliances with unique allies, each with their own strengths, abilities, and backstory.
+- Experience an epic storyline filled with twists, turns, and moments of heroism that will keep you on the edge of your seat.
+- Customize your character with a range of equipment, spells, and abilities to suit your playstyle and preferences.
+
+### Installation
+
+To run Guardians Ascension RPG on your local machine, follow these steps:
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/your-username/Guardians_Ascension_RPG.git
+
+
+2. Install the required dependencies:
+
+
+3. Run the game:
+
+
+## Controls
+
+- Use the arrow keys to move your character.
+- Press SPACEBAR to interact with objects and NPCs.
+- Use the ESCAPE key to open the pause menu.
+
+## Contributing
+
+Contributions are welcome! If you'd like to contribute to Guardians Ascension RPG, please fork the repository, make your changes, and submit a pull request.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+Have fun playing Guardians Ascension RPG, and may the light of hope guide you on your journey through Aetheria!
