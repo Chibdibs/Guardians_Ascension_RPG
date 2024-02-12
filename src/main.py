@@ -1,16 +1,49 @@
-# This is a sample Python script.
+# Main project file for RPG
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+import pygame
+import sys
+
+# CONSTANTS
+WIDTH = 800
+HEIGHT = 600
+BLACK = (0, 0, 0)
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
+# Runs the pygame project
+def main():
+    # Initialize Pygame
+    pygame.init()
 
+    # Set up the display
+    screen = pygame.display.set_mode((WIDTH, HEIGHT))
+    pygame.display.set_caption("Guardians Ascension RPG")
 
-# Press the green button in the gutter to run the script.
+    # Clock for controlling the frame rate
+    clock = pygame.time.Clock()
+
+    # Main game loop
+    running = True
+    while running:
+        # Event handling
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+
+        # Update game state
+
+        # Render
+        screen.fill(BLACK)
+
+        # Flip the display
+        pygame.display.flip()
+
+        # Cap the frame rate
+        clock.tick(60)
+
+    # Quit Pygame
+    pygame.quit()
+    sys.exit()
+
 if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    main()
+    pass
