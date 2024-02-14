@@ -50,3 +50,5 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 - Pygame community for providing the game development library.
 - OpenGameArt and Freesound for providing free game assets and sound effects.
 - Contributors to the project for their valuable feedback and contributions.
+
+![img1](https://github.com/Chibdibs/Guardians_Ascension_RPG/assets/9670771/6b45325a-7db7-4aad-9cab-09660a363ccf)
