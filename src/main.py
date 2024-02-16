@@ -1,3 +1,5 @@
+import pickle
+
 import pygame
 import os
 import time
@@ -79,6 +81,79 @@ def display_splash_image(screen, splash_image):
     pygame.display.flip()
 
 
+def show_menu(screen):
+    # Clear the screen
+    screen.fill(BLACK)
+
+    # Display menu options based on save file status
+    options = ["New Game", "Load Game", "Settings", "Quit"]
+    if check_save_file():
+        options.insert(0, "Resume")
+
+    # Display menu text
+    font = pygame.font.Font(None, 36)
+    text_y = MIN_HEIGHT // 2 - 50  # Initial y-coordinate for the first option
+
+    # Initialize text variable
+    text = None
+
+    for option in options:
+        text = font.render(option, True, (255, 255, 255))
+        text_rect = text.get_rect(center=(MIN_WIDTH // 2, text_y))
+        screen.blit(text, text_rect)
+        text_y += 50  # Increment y-coordinate for the next option
+
+    pygame.display.flip()
+
+    # Wait for user input to select an option
+    waiting = True
+    while waiting:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                # Check if hte mouse click is within the bounds of any option
+                for i, option in enumerate(options):
+                    text_rect = text.get_rect(center=(MIN_WIDTH // 2, MIN_HEIGHT // 2 - 50 + i * 50))
+                    if text_rect.collidepoint(event.pos):
+                        if option == "Quit":
+                            pygame.quit()
+                            sys.exit()
+                        else:
+                            print(f"Selected option: {option}")
+                            waiting = False
+                            break
+
+
+# Function to save game data to a file
+def save_game_data(data):
+    save_dir = "save-data"
+    if not os.path.exists(save_dir):
+        os.makedirs(save_dir)
+    save_path = os.path.join(save_dir, "game_data.sav")
+    with open(save_path, "wb") as file:
+        pickle.dump(data, file)
+
+
+# Function to load game data from a file
+def load_game_data():
+    save_path = os.path.join("save-data", "game_data.sav")
+    if not os.path.exists(save_path):
+        return None
+    with open(save_path, "rb") as file:
+        return pickle.load(file)
+
+
+# Function to check if a save file already exists
+def check_save_file():
+    save_dir = "save-data"
+    save_path = os.path.join(save_dir, "game_data.sav")
+    if os.path.exists(save_path):
+        return True
+    return False
+
+
 # Main function
 def main():
     # Initialize Pygame
@@ -90,6 +165,9 @@ def main():
 
     # Show splash screen
     show_splash_screen(screen)
+
+    # Show menu
+    show_menu(screen)
 
     # Clock for controlling the frame rate
     clock = pygame.time.Clock()
