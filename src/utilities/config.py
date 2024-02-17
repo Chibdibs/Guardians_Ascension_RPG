@@ -1,0 +1,4 @@
+# CONSTANTS
+MIN_WIDTH, MIN_HEIGHT = 1920, 1080
+BLACK = (0, 0, 0)
+SPLASH_DURATION = 3000  # 3000 milliseconds = 3 seconds
