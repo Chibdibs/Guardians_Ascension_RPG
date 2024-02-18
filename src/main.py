@@ -25,7 +25,7 @@ def main():
     pygame.init()
 
     # Set up the display
-    screen = pygame.display.set_mode((MIN_WIDTH, MIN_HEIGHT), pygame.RESIZABLE)
+    screen = pygame.display.set_mode((INITIAL_WIDTH, INITIAL_HEIGHT), pygame.RESIZABLE)
     pygame.display.set_caption("Guardians Ascension")
 
     # Show splash screen
