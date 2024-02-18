@@ -30,6 +30,14 @@ def render_menu(screen, font, options, background_image):
     return text_surfaces_and_rects
 
 
+# Optimizes the mouse hovering to decrease unnecessary resource load/use
+def get_hovered_option(mouse_pos, text_surfaces_and_rects):
+    for option, _, text_rect in text_surfaces_and_rects:
+        if text_rect.collidepoint(mouse_pos):
+            return option
+    return None
+
+
 # Displays the game main menu scene
 def show_menu(screen):
     # Load background image
@@ -46,6 +54,7 @@ def show_menu(screen):
 
     # Initial render
     text_surfaces_and_rects = render_menu(screen, font, options, background_image)
+    hovered_option = None
 
     waiting = True
     while waiting:
@@ -75,12 +84,17 @@ def show_menu(screen):
                             waiting = False  # Break the loop if necessary
 
             elif event.type == pygame.MOUSEMOTION:
-                # Handle hover effects
-                render_menu(screen, font, options, background_image)  # Re-render the menu to clear previous highlights
-                for option, text_surface, text_rect in text_surfaces_and_rects:
-                    if text_rect.collidepoint(event.pos):
-                        highlighted_text_surface = font.render(option, True, TEXT_HIGHLIGHTED_COLOR)
-                        screen.blit(highlighted_text_surface, text_rect)
-                    else:
-                        screen.blit(text_surface, text_rect)
-                pygame.display.flip()  # Update the display with hover effects
+                current_hover = get_hovered_option(event.pos, text_surfaces_and_rects)
+
+                if current_hover != hovered_option:  # Only update if the hover state changes
+                    hovered_option = current_hover
+                    # Re-render menu to clear previous highlights
+                    render_menu(screen, font, options, background_image)
+                    for option, text_surface, text_rect in text_surfaces_and_rects:
+                        if option == hovered_option:
+                            highlighted_text_surface = font.render(option, True, TEXT_HIGHLIGHTED_COLOR)
+                            screen.blit(highlighted_text_surface, text_rect)
+                        else:
+                            screen.blit(text_surface, text_rect)
+
+                    pygame.display.flip()  # Update the display with hover effects
