@@ -55,6 +55,7 @@ def show_menu(screen):
     # Initial render
     text_surfaces_and_rects = render_menu(screen, font, options, background_image)
     hovered_option = None
+    current_screen = "Main Menu"
 
     waiting = True
     while waiting:
@@ -79,12 +80,13 @@ def show_menu(screen):
                             pygame.quit()
                             sys.exit()
                         elif option == "Settings":
-                            show_settings(screen)  # Navigate to the settings screen
+                            current_screen = "Settings"
                         elif option == "New Game":
-                            show_first_level(screen)  # Navigate to the first level scene
+                            current_screen = "First Level"
+                        elif option == "Return to Main Menu":
+                            current_screen = "Main Menu"
                         else:
                             print(f"Selected option: {option}")
-                            # Implement option selection logic here (e.g., start game, open settings, etc.)
                             waiting = False  # Break the loop if necessary
 
             elif event.type == pygame.MOUSEMOTION:
@@ -100,11 +102,19 @@ def show_menu(screen):
                             screen.blit(highlighted_text_surface, text_rect)
                         else:
                             screen.blit(text_surface, text_rect)
-
                     pygame.display.flip()  # Update the display with hover effects
 
+        # Render the current screen based on the current screen state
+        if current_screen == "Main Menu":
+            render_menu(screen, font, options, background_image)
+        elif current_screen == "Settings":
+            render_settings(screen)
+        elif current_screen == "First Level":
+            render_first_level(screen)
+        pygame.display.flip()  # Update the display
 
-def show_settings(screen):
+
+def render_settings(screen):
     # Placeholder function for settings scene
     screen.fill(BLACK)  # clear the screen
     font = pygame.font.Font(None, 36)
@@ -119,8 +129,19 @@ def show_settings(screen):
 
     pygame.display.flip()  # Update the display
 
+    waiting = True
+    while waiting:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                if "Return to Main Menu" in settings_options:
+                    return True  # Return True indicating a request to go back to the main menu
+    return False  # No request to go back to the main menu
 
-def show_first_level(screen):
+
+def render_first_level(screen):
     # Placeholder function for the first level scene
     screen.fill(BLACK)  # Clear the screen
     font = pygame.font.Font(None, 36)
@@ -128,3 +149,11 @@ def show_first_level(screen):
     text_rect = text.get_rect(center=(screen.get_width() // 2, screen.get_height() // 2))
     screen.blit(text, text_rect)
     pygame.display.flip()  # Update the display
+
+
+# Entry point
+def main():
+    pygame.init()
+    screen = pygame.display.set_mode((INITIAL_WIDTH, INITIAL_HEIGHT), pygame.RESIZABLE)
+    pygame.display.set_caption("Game")
+    show_menu(screen)
