@@ -50,7 +50,7 @@ def show_menu(screen):
     font = pygame.font.Font(None, 72)
     options = ["New Game", "Load Game", "Settings", "Quit"]
     if check_save_file():
-        options.insert(0, "Resume")
+        options.insert(0, "Continue")
 
     # Initial render
     text_surfaces_and_rects = render_menu(screen, font, options, background_image)
@@ -78,6 +78,10 @@ def show_menu(screen):
                         if option == "Quit":
                             pygame.quit()
                             sys.exit()
+                        elif option == "Settings":
+                            show_settings(screen)  # Navigate to the settings screen
+                        elif option == "New Game":
+                            show_first_level(screen)  # Navigate to the first level scene
                         else:
                             print(f"Selected option: {option}")
                             # Implement option selection logic here (e.g., start game, open settings, etc.)
@@ -98,3 +102,29 @@ def show_menu(screen):
                             screen.blit(text_surface, text_rect)
 
                     pygame.display.flip()  # Update the display with hover effects
+
+
+def show_settings(screen):
+    # Placeholder function for settings scene
+    screen.fill(BLACK)  # clear the screen
+    font = pygame.font.Font(None, 36)
+    settings_options = ["Return to Main Menu", "Sound", "Graphics", "Controls"]  # Options for settings
+    text_y = screen.get_height() // 2 - 100  # Initial y-coordinate for the first option
+
+    for option in settings_options:
+        text = font.render(option, True, TEXT_DEFAULT_COLOR)
+        text_rect = text.get_rect(center=(screen.get_width() // 2, text_y))
+        screen.blit(text, text_rect)
+        text_y += font.get_height() + 50  # Increase y-coordinate for the next option
+
+    pygame.display.flip()  # Update the display
+
+
+def show_first_level(screen):
+    # Placeholder function for the first level scene
+    screen.fill(BLACK)  # Clear the screen
+    font = pygame.font.Font(None, 36)
+    text = font.render("First Level Scene", True, TEXT_DEFAULT_COLOR)
+    text_rect = text.get_rect(center=(screen.get_width() // 2, screen.get_height() // 2))
+    screen.blit(text, text_rect)
+    pygame.display.flip()  # Update the display

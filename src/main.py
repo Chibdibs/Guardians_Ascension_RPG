@@ -21,21 +21,14 @@ action-packed RPG.
 
 # Main function
 def main():
-    # Initialize Pygame
-    pygame.init()
+    pygame.init()  # Initialize Pygame
 
     # Set up the display
     screen = pygame.display.set_mode((INITIAL_WIDTH, INITIAL_HEIGHT), pygame.RESIZABLE)
     pygame.display.set_caption("Guardians Ascension")
-
-    # Show splash screen
-    show_splash_screen(screen)
-
-    # Show menu
-    show_menu(screen)
-
-    # Clock for controlling the frame rate
-    clock = pygame.time.Clock()
+    show_splash_screen(screen)  # Show splash screen
+    show_menu(screen)  # Show menu
+    clock = pygame.time.Clock()  # Clock for controlling the frame rate
 
     # Main game loop
     running = True
@@ -46,15 +39,9 @@ def main():
                 running = False
 
         # Update game state
-
-        # Render
-        screen.fill(BLACK)
-
-        # Flip the display
-        pygame.display.flip()
-
-        # Cap the frame rate
-        clock.tick(60)
+        screen.fill(BLACK)  # Render
+        pygame.display.flip()  # Flip the display
+        clock.tick(60)  # Cap the frame rate
 
     # Quit Pygame
     pygame.quit()
